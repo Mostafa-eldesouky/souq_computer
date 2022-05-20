@@ -53,6 +53,7 @@ class _LoginScreenMostafaState extends State<LoginScreenMostafa> {
                     keyboardType: TextInputType.emailAddress,
                     decoration: InputDecoration(
                       errorText: errorEmail,
+                      errorStyle: TextStyle(color: Colors.yellowAccent , fontWeight:  FontWeight.w700),
                       border: OutlineInputBorder(),
                       fillColor: Colors.white,
                       enabledBorder:OutlineInputBorder(
@@ -61,11 +62,15 @@ class _LoginScreenMostafaState extends State<LoginScreenMostafa> {
                       ),
                       focusedBorder: OutlineInputBorder(
                          borderRadius: BorderRadius.circular(20),
-                          borderSide: BorderSide(color: Colors.white ,width: 1 )
+                          borderSide: BorderSide(color: Colors.white ,width: 2 )
                       ),
                       errorBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(20),
-                          borderSide: BorderSide(color: Colors.red ,width: 1 )
+                          borderSide: BorderSide(color: Colors.yellowAccent ,width: 2 )
+                      ),
+                      focusedErrorBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20),
+                          borderSide: BorderSide(color: Colors.white ,width: 2 )
                       ),
                       focusColor: Colors.white,
                       labelText: 'Enter Your Email',
@@ -85,7 +90,7 @@ class _LoginScreenMostafaState extends State<LoginScreenMostafa> {
                     style: TextStyle(color: Colors.white , fontWeight: FontWeight.bold ,),
                     decoration: InputDecoration(
                       errorText: errorPass,
-                      errorStyle: TextStyle(color: Colors.red),
+                      errorStyle: TextStyle(color: Colors.yellowAccent),
                       suffixIcon: IconButton(
                         icon: Icon(
                          Hide ? Icons.remove_red_eye : Icons.visibility_off,
@@ -96,18 +101,26 @@ class _LoginScreenMostafaState extends State<LoginScreenMostafa> {
                           });
                       },
                       ),
+                      prefixIcon:  Icon(
+                        Icons.lock,
+                        color: Colors.white,
+                      ),
                       fillColor: Colors.white,
                       enabledBorder:OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(20)),
-                          borderSide: BorderSide(color: Colors.white ,width: 1 )
+                          borderSide: BorderSide(color: Colors.white ,width: 2 )
                       ),
                       focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(20),
-                          borderSide: BorderSide(color: Colors.white ,width: 1 )
+                          borderSide: BorderSide(color: Colors.white ,width: 2 )
                       ),
                      errorBorder: OutlineInputBorder(
                          borderRadius: BorderRadius.circular(20),
-                         borderSide: BorderSide(color: Colors.red ,width: 1 )
+                         borderSide: BorderSide(color: Colors.yellowAccent ,width: 2 )
+                     ),
+                     focusedErrorBorder: OutlineInputBorder(
+                         borderRadius: BorderRadius.circular(20),
+                         borderSide: BorderSide(color: Colors.white ,width: 2 )
                      ),
                      labelText:'Enter Your Password',
                       labelStyle: TextStyle(color: Colors.white),
@@ -126,14 +139,22 @@ class _LoginScreenMostafaState extends State<LoginScreenMostafa> {
                       }else if(emailController.text.isEmpty){
                         setState(() {
                           errorEmail = 'Please Enter Your Email';
+                          errorPass = null;
                         });
                       }else if (passController.text.isEmpty){
                         setState(() {
                           errorPass ='Please Enter Your Password';
+                          errorEmail =null;
                         });
                       }else if(passController.text.length<6){
                         setState(() {
                           errorPass = 'Password Must Be More Than 6 Characters';
+                          errorEmail = null;
+                        });
+                      }else{
+                        setState(() {
+                          errorPass = null;
+                          errorEmail = null ;
                         });
                       }
                     },

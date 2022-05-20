@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:souq_computer/Mostafa/login_screen_mostafa.dart';
-import 'package:souq_computer/Screens/login_body/Login_Screen.dart';
 
 void main() {
   runApp( MyApp());
