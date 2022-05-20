@@ -10,6 +10,10 @@ class LoginScreenMostafa extends StatefulWidget {
 }
 
 class _LoginScreenMostafaState extends State<LoginScreenMostafa> {
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passController = TextEditingController();
+  String? errorEmail,errorPass;
+
   bool Hide = true;
   @override
   Widget build(BuildContext context) {
@@ -43,11 +47,13 @@ class _LoginScreenMostafaState extends State<LoginScreenMostafa> {
                   ),
 
                   TextFormField(
+                    controller: emailController,
+
                     style: TextStyle(color: Colors.white , fontWeight: FontWeight.bold ,),
                     keyboardType: TextInputType.emailAddress,
                     decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                      ),
+                      errorText: errorEmail,
+                      border: OutlineInputBorder(),
                       fillColor: Colors.white,
                       enabledBorder:OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(20)),
@@ -56,6 +62,10 @@ class _LoginScreenMostafaState extends State<LoginScreenMostafa> {
                       focusedBorder: OutlineInputBorder(
                          borderRadius: BorderRadius.circular(20),
                           borderSide: BorderSide(color: Colors.white ,width: 1 )
+                      ),
+                      errorBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20),
+                          borderSide: BorderSide(color: Colors.red ,width: 1 )
                       ),
                       focusColor: Colors.white,
                       labelText: 'Enter Your Email',
@@ -70,9 +80,12 @@ class _LoginScreenMostafaState extends State<LoginScreenMostafa> {
                     height: 20,
                   ),
                   TextFormField(
+                    controller: passController,
                     obscureText: Hide,
                     style: TextStyle(color: Colors.white , fontWeight: FontWeight.bold ,),
                     decoration: InputDecoration(
+                      errorText: errorPass,
+                      errorStyle: TextStyle(color: Colors.red),
                       suffixIcon: IconButton(
                         icon: Icon(
                          Hide ? Icons.remove_red_eye : Icons.visibility_off,
@@ -92,6 +105,10 @@ class _LoginScreenMostafaState extends State<LoginScreenMostafa> {
                           borderRadius: BorderRadius.circular(20),
                           borderSide: BorderSide(color: Colors.white ,width: 1 )
                       ),
+                     errorBorder: OutlineInputBorder(
+                         borderRadius: BorderRadius.circular(20),
+                         borderSide: BorderSide(color: Colors.red ,width: 1 )
+                     ),
                      labelText:'Enter Your Password',
                       labelStyle: TextStyle(color: Colors.white),
                     ),
@@ -101,6 +118,24 @@ class _LoginScreenMostafaState extends State<LoginScreenMostafa> {
                   ),
                   InkWell(
                     onTap: () {
+                      if(emailController.text.isEmpty&& passController.text.isEmpty){
+                        setState(() {
+                          errorEmail ='Enter Your Email';
+                          errorPass ='Enter Your Password';
+                        });
+                      }else if(emailController.text.isEmpty){
+                        setState(() {
+                          errorEmail = 'Please Enter Your Email';
+                        });
+                      }else if (passController.text.isEmpty){
+                        setState(() {
+                          errorPass ='Please Enter Your Password';
+                        });
+                      }else if(passController.text.length<6){
+                        setState(() {
+                          errorPass = 'Password Must Be More Than 6 Characters';
+                        });
+                      }
                     },
                     child: Container(
                       height: 60,
