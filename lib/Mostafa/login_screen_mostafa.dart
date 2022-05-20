@@ -10,6 +10,7 @@ class LoginScreenMostafa extends StatefulWidget {
 }
 
 class _LoginScreenMostafaState extends State<LoginScreenMostafa> {
+  bool Hide = true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -69,15 +70,18 @@ class _LoginScreenMostafaState extends State<LoginScreenMostafa> {
                     height: 20,
                   ),
                   TextFormField(
+                    obscureText: Hide,
                     style: TextStyle(color: Colors.white , fontWeight: FontWeight.bold ,),
                     decoration: InputDecoration(
-                      suffixIcon: Icon(
-                        Icons.remove_red_eye,
-                        color: Colors.white,
-                      ),
-                      prefixIcon: Icon(
-                        Icons.lock,
-                        color: Colors.white,
+                      suffixIcon: IconButton(
+                        icon: Icon(
+                         Hide ? Icons.remove_red_eye : Icons.visibility_off,
+                          color: Colors.white,
+                        ), onPressed: () {
+                          setState(() {
+                            Hide = !Hide ;
+                          });
+                      },
                       ),
                       fillColor: Colors.white,
                       enabledBorder:OutlineInputBorder(
