@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:souq_computer/Mostafa/login_screen_mostafa.dart';
 
+import 'Mostafa/register_screen_mostafa.dart';
+
 void main() {
   runApp( MyApp());
 }
@@ -11,7 +13,7 @@ class MyApp extends StatelessWidget {
   // This widgetCustom is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(home: LoginScreenMostafa(),
+    return MaterialApp(home: RegistrScreenMostafa(),
     );
   }
 }
